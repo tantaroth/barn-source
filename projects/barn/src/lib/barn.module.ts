@@ -14,7 +14,7 @@ import { BarnFormComponent } from './components/barn-form/barn-form.component';
     ReactiveFormsModule
   ],
   declarations: [BarnComponent, BarnFormComponent],
-  exports: [BarnComponent]
+  exports: [BarnComponent, BarnFormComponent]
 })
 export class BarnModule {
   static forRoot(config: Config): ModuleWithProviders {
