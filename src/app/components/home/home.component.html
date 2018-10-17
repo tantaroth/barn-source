@@ -1,0 +1,31 @@
+<p>
+  home works!
+</p>
+
+<a routerLink="/asd">List</a>
+
+<h4 [hidden]="!editing">Editing...</h4>
+
+<tnt-barn-form [index]="index" [formGroup]="form" [guardSave]="true" (submitting)="onSubmitting($event)" (submitted)="onSubmitted($event)">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" formControlName="name" #name>
+    <div *ngIf="form.controls.name.invalid && form.controls.name.touched">
+      Name is invalid
+    </div>
+  </div>
+  
+  <button type="submit">Save</button>
+  <button type="reset" (click)="reset()">New</button>
+</tnt-barn-form>
+
+<ul *ngIf="list">
+  <li *ngFor="let item of list; let i = index">
+
+    {{ item | json }}
+
+    <button type="button" (click)="edit(i)">Edit</button>
+    <button type="button" (click)="delete(i)">Delete</button>
+
+  </li>
+</ul>
