@@ -126,7 +126,7 @@
         }
       }
     },
-    "barn": {
+    "barn-ng": {
       "root": "projects/barn",
       "sourceRoot": "projects/barn/src",
       "projectType": "library",

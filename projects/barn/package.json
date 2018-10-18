@@ -1,8 +1,17 @@
 {
-  "name": "barn",
-  "version": "0.0.1",
+  "name": "barn-ng",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tantaroth/barn.git"
+  },
+  "author": {
+    "email": "hello@tantaroth.com",
+    "name": "Eduard Ramirez",
+    "url": "https://about.me/tantaroth"
   }
 }
