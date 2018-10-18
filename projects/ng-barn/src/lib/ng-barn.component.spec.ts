@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarnComponent } from './barn.component';
+import { NgBarnComponent } from './ng-barn.component';
 
-describe('BarnComponent', () => {
-  let component: BarnComponent;
-  let fixture: ComponentFixture<BarnComponent>;
+describe('NgBarnComponent', () => {
+  let component: NgBarnComponent;
+  let fixture: ComponentFixture<NgBarnComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BarnComponent ]
+      declarations: [ NgBarnComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BarnComponent);
+    fixture = TestBed.createComponent(NgBarnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

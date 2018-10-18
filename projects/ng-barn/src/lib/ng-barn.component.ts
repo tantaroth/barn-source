@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'tnt-barn',
+  selector: 'tnt-ng-barn',
   template: `
     <p>
-      barn works!
+      ng-barn works!
     </p>
   `,
   styles: []
 })
-export class BarnComponent implements OnInit {
+export class NgBarnComponent implements OnInit {
 
   constructor() { }
 

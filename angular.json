@@ -127,32 +127,32 @@
       }
     },
     "ng-barn": {
-      "root": "projects/barn",
-      "sourceRoot": "projects/barn/src",
+      "root": "projects/ng-barn",
+      "sourceRoot": "projects/ng-barn/src",
       "projectType": "library",
       "prefix": "tnt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/barn/tsconfig.lib.json",
-            "project": "projects/barn/ng-package.json"
+            "tsConfig": "projects/ng-barn/tsconfig.lib.json",
+            "project": "projects/ng-barn/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/barn/src/test.ts",
-            "tsConfig": "projects/barn/tsconfig.spec.json",
-            "karmaConfig": "projects/barn/karma.conf.js"
+            "main": "projects/ng-barn/src/test.ts",
+            "tsConfig": "projects/ng-barn/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-barn/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/barn/tsconfig.lib.json",
-              "projects/barn/tsconfig.spec.json"
+              "projects/ng-barn/tsconfig.lib.json",
+              "projects/ng-barn/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

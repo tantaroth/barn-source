@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarnFormComponent } from './barn-form.component';
+import { NgBarnFormComponent } from './ng-barn-form.component';
 
-describe('BarnFormComponent', () => {
-  let component: BarnFormComponent;
-  let fixture: ComponentFixture<BarnFormComponent>;
+describe('NgBarnFormComponent', () => {
+  let component: NgBarnFormComponent;
+  let fixture: ComponentFixture<NgBarnFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BarnFormComponent ]
+      declarations: [ NgBarnFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BarnFormComponent);
+    fixture = TestBed.createComponent(NgBarnFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

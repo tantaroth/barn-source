@@ -1,16 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { BarnService } from '../../barn.service';
+import { NgBarnService } from '../../ng-barn.service';
 
 import { Config } from '../../models/config';
 
 @Component({
-  selector: 'tnt-barn-form',
-  templateUrl: './barn-form.component.html',
-  styleUrls: ['./barn-form.component.css']
+  selector: 'tnt-ng-barn-form',
+  templateUrl: './ng-barn-form.component.html',
+  styleUrls: ['./ng-barn-form.component.css']
 })
-export class BarnFormComponent implements OnInit {
+export class NgBarnFormComponent implements OnInit {
 
   private saved: boolean;
   private editing: boolean;
@@ -45,7 +45,7 @@ export class BarnFormComponent implements OnInit {
   }
 
   constructor(
-      private store: BarnService
+      private store: NgBarnService
   ) {
       const config: Config = store.hot();
 

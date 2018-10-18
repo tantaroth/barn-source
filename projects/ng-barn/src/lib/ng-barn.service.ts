@@ -5,7 +5,7 @@ import { Config } from './models/config';
 @Injectable({
   providedIn: 'root'
 })
-export class BarnService {
+export class NgBarnService {
 
   private key: string;
   private store: object = {};

@@ -18,11 +18,11 @@
       "dom"
     ],
     "paths": {
-      "barn": [
-        "dist/barn"
+      "ng-barn": [
+        "dist/ng-barn"
       ],
-      "barn/*": [
-        "dist/barn/*"
+      "ng-barn/*": [
+        "dist/ng-barn/*"
       ]
     }
   }
