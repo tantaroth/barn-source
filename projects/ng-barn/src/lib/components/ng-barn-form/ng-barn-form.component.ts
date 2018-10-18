@@ -6,7 +6,7 @@ import { NgBarnService } from '../../ng-barn.service';
 import { Config } from '../../models/config';
 
 @Component({
-  selector: 'tnt-ng-barn-form',
+  selector: 'tnt-barn-form',
   templateUrl: './ng-barn-form.component.html',
   styleUrls: ['./ng-barn-form.component.css']
 })
