@@ -1,24 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 
-import { BarnService } from 'barn';
-
-import { User } from './models/user';
+import { NgBarnService } from 'ng-barn';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  index: number;
-  form: FormGroup;
-  list: User[];
-  listed: boolean;
-  editing: boolean;
+export class AppComponent {
+  title = 'barn-source';
 
   constructor(
-    private store: BarnService
+    private store: NgBarnService
   ) {
     store.select('users');
     store.set([
@@ -59,43 +52,7 @@ export class AppComponent implements OnInit {
       name: 'Andres'
     });
     store.delete(1);
+
+    console.log(store.get());
   }
-
-  ngOnInit() {
-    this.form = new FormGroup({
-      name: new FormControl('', Validators.required),
-    });
-
-    this.list = this.store.get();
-  }
-
-  reset() {
-    this.form.reset();
-    this.index = null;
-    this.editing = null;
-  }
-
-  edit(index: number) {
-    this.editing = true;
-    this.index = index;
-
-    this.form.patchValue(this.list[index]);
-  }
-
-  delete(index: number) {
-    if (confirm('Esta seguro de eliminar este registro?')) {
-      this.store.delete(index);
-      this.reset();
-    }
-  }
-
-  onSubmitting(event: User[]) {
-    this.list = event;
-  }
-  onSubmitted(event: boolean) {
-    if (event) {
-      this.reset();
-    }
-  }
-
 }
