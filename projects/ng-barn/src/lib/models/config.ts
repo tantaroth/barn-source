@@ -1,4 +1,6 @@
 export interface Config {
     key?: string;
-    store: object;
+    store: {
+        [key: string]: any
+    };
 }
