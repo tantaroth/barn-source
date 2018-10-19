@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NgBarnService } from 'ng-barn';
+import { NgBarnService, RequestService } from 'ng-barn';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,11 @@ import { NgBarnService } from 'ng-barn';
 })
 export class AppComponent {
   title = 'barn-source';
+  list: any[];
 
   constructor(
-    private store: NgBarnService
+    private store: NgBarnService,
+    private req: RequestService
   ) {
     store.select('users');
     store.set([
@@ -52,6 +54,8 @@ export class AppComponent {
       name: 'Andres'
     });
     store.delete(1);
+
+    this.list = store.get();
 
     console.log(store.get());
   }
