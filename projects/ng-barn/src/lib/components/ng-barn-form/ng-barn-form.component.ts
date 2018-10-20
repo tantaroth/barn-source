@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { NgBarnService } from '../../ng-barn.service';
+import { StoreService } from '../../store.service';
 
 import { Config } from '../../models/config';
 
@@ -45,7 +45,7 @@ export class NgBarnFormComponent implements OnInit {
   }
 
   constructor(
-      private store: NgBarnService
+      private store: StoreService
   ) {
       const config: Config = store.hot();
 
