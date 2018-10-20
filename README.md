@@ -1,27 +1,226 @@
-# BarnSource
+# Barn
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.2.
+Es una librería básica creada para **angular 2+**, inspirada en **redux** para el manejo de datos.
 
-## Development server
+## Instalar
+```
+npm install ng-barn
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Ejemplo de uso básico
+*app.module.ts*
+```
+import { BrowserModule } from  '@angular/platform-browser';  
+import { NgModule } from  '@angular/core';  
+import { NgBarnModule } from  'ng-barn';  
+  
+import { AppComponent } from  './app.component';  
+  
+@NgModule({  
+	declarations: [  
+		AppComponent  
+	],
+	imports: [  
+		BrowserModule,  
+		NgBarnModule.forRoot({  
+			store: {  
+				users: []  
+			}  
+		})  
+	],  
+	providers: [],  
+	bootstrap: [AppComponent]  
+})  
+export  class AppModule { }
+```
+*app.component.ts*
+```
+import { Component } from  '@angular/core';  
+import { NgBarnService } from  'ng-barn';  
+  
+@Component({  
+	selector: 'app-root',  
+	template: `  
+		<pre>{{ list | json }}</pre>  
+	`  
+})  
+export  class AppComponent {  
+	list: any[];  
+	constructor(  
+		private store: NgBarnService  
+	) {  
+		store.select('users');  
+		store.set([  
+			{  
+				id: 1,  
+				name: 'Eduar'  
+			}  
+		]);  
+		store.push({  
+			id: 2,  
+			name: 'Andres'  
+		});  
+		store.update(0, {  
+			name: 'Eduard'  
+		});  
+		store.delete(1);  
+		  
+		console.log(store.get());  
+		  
+		this.list = store.get();  
+	}  
+}
+```
+### Métodos
+- **select:** Crea un instancia del store creado, si no está creado deberá hacerlo con el método **set**.
+- **get:** Obtiene el valor de un store.
+- **set:** Define el valor de un store.
+- **push:** Agrega un valor a un store.
+- **update:** Actualiza el valor definido con el índice del store.
+- **delete:** Elimina el valor de un store.
+## Insertando formulario
+*app.module.ts*
+```
+import { BrowserModule } from  '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from  '@angular/core';  
+import { NgBarnModule } from  'ng-barn';  
+  
+import { AppComponent } from  './app.component';  
+  
+@NgModule({  
+	declarations: [  
+		AppComponent  
+	],
+	imports: [  
+		BrowserModule,
+		FormsModule,
+		ReactiveFormsModule,
+		NgBarnModule.forRoot({  
+			store: {  
+				users: []  
+			}  
+		})  
+	],  
+	providers: [],  
+	bootstrap: [AppComponent]  
+})  
+export  class AppModule { }
+```
+*app.component.ts*
+```
+import { Component, OnInit } from  '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgBarnService } from  'ng-barn';  
 
-## Code scaffolding
+@Component({  
+	selector: 'app-root',
+	template: './index.html'
+})  
+export  class AppComponent implements OnInit { 
+	index: number;  
+	form: FormGroup;  
+	list: any[];  
+	listed: boolean;  
+	editing: boolean;
+	constructor(  
+		private store: NgBarnService  
+	) {  
+		store.select('users');  
+		store.set([  
+			{  
+				id: 1,  
+				name: 'Eduar'  
+			}  
+		]);  
+		store.push({  
+			id: 2,  
+			name: 'Andres'  
+		});  
+		store.update(0, {  
+			name: 'Eduard'  
+		});  
+		store.delete(1);  
+		  
+		console.log(store.get());  
+		  
+		this.list = store.get();  
+	}
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+	ngOnInit() {  
+		this.form = new FormGroup({  
+			name: new FormControl('', Validators.required),  
+		});  
+		  
+		this.list = this.store.get();  
+	}
+	
+	reset() {  
+		this.form.reset();  
+		this.index = null;  
+		this.editing = null;  
+	}
+	
+	edit(index: number) {  
+		this.editing = true;  
+		this.index = index;  
+		  
+		this.form.patchValue(this.list[index]);  
+	}
 
-## Build
+	delete(index: number) {  
+		if (confirm('Está seguro de eliminar este registro?')) {  
+			this.store.delete(index);  
+			this.reset();  
+		}  
+	}
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+	onSubmitting(event: any[]) {  
+		this.list = event;  
+	}  
+	onSubmitted(event: boolean) {  
+		if (event) {  
+			this.reset();  
+		}  
+	}
 
-## Running unit tests
+}
+```
+*index.html*
+```
+<h4 [hidden]="!editing">Editing...</h4>  
+  
+<tnt-barn-form [index]="index" [formGroup]="form" [guardSave]="true" (submitting)="onSubmitting($event)" (submitted)="onSubmitted($event)">  
+	<div class="form-group">  
+		<label for="name">Name</label>  
+		<input type="text" class="form-control" id="name" name="name" formControlName="name" #name>  
+		<div *ngIf="form.controls.name.invalid && form.controls.name.touched">  
+			Name is invalid  
+		</div>  
+	</div>  
+	  
+	<button type="submit">Save</button>  
+	<button type="reset" (click)="reset()">New</button>  
+</tnt-barn-form>  
+  
+<ul *ngIf="list">  
+<li *ngFor="let item of list; let i = index">  
+  
+<pre>{{ item | json }}</pre>
+  
+<button type="button" (click)="edit(i)">Edit</button>  
+<button type="button" (click)="delete(i)">Delete</button>  
+  
+</li>  
+</ul>
+```
+### Propiedades de *tnt-barn-form*
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-   **index:** Es el índice que se usará para que el formulario actue, una vez se asigne un índice se editará los cambios suministrados en el formulario o se guardará cuando no tenga asignado ningún valor en el índice.
+-   **formGroup:** Es la estructura del formulario que se usará junto a las validaciones con la funcionalidad de angular 2+ (FormGroup).
+- **guardSave:** Permite que el usuario obtenga una advertencia cuando el  formulario no se haya guardado correctamente y quiera salir de la ventana.
 
-## Running end-to-end tests
+### Métodos de *tnt-barn-form*
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+-   **submitting:** Devuelve el arreglo completo con los objetos guardados o editando una vez haga submit en el formulario.
+- **submitted:** Devuelve el estado del submit en un tipo de dato *(boolean)*, ***true*** si se guardo correctamente, ***false*** si hubo un impedimento al guardar los datos.
