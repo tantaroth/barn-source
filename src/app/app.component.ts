@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NgBarnService } from 'ng-barn';
+import { StoreService } from 'ng-barn';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'barn-source';
 
   constructor(
-    private store: NgBarnService
+    private store: StoreService
   ) {
     store.select('users');
     store.set([

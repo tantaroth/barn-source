@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NgBarnService } from './ng-barn.service';
+import { StoreService } from './store.service';
 
-describe('NgBarnService', () => {
+describe('StoreService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: NgBarnService = TestBed.get(NgBarnService);
+    const service: StoreService = TestBed.get(StoreService);
     expect(service).toBeTruthy();
   });
 });

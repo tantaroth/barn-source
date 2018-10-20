@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NgBarnService } from './ng-barn.service';
+import { StoreService } from './store.service';
 
 import { NgBarnComponent } from './ng-barn.component';
 import { NgBarnFormComponent } from './components/ng-barn-form/ng-barn-form.component';
@@ -17,7 +17,7 @@ export class NgBarnModule {
   static forRoot(config: Config): ModuleWithProviders {
     return {
       ngModule: NgBarnModule,
-      providers: [NgBarnService, { provide: 'config', useValue: config }]
+      providers: [StoreService, { provide: 'config', useValue: config }]
     };
   }
 }
