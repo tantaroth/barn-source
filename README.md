@@ -36,7 +36,7 @@ export  class AppModule { }
 *app.component.ts*
 ```
 import { Component } from  '@angular/core';  
-import { NgBarnService } from  'ng-barn';  
+import { StoreService } from  'ng-barn';  
   
 @Component({  
 	selector: 'app-root',  
@@ -47,7 +47,7 @@ import { NgBarnService } from  'ng-barn';
 export  class AppComponent {  
 	list: any[];  
 	constructor(  
-		private store: NgBarnService  
+		private store: StoreService  
 	) {  
 		store.select('users');  
 		store.set([  
@@ -111,7 +111,7 @@ export  class AppModule { }
 ```
 import { Component, OnInit } from  '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgBarnService } from  'ng-barn';  
+import { StoreService } from  'ng-barn';  
 
 @Component({  
 	selector: 'app-root',
@@ -124,7 +124,7 @@ export  class AppComponent implements OnInit {
 	listed: boolean;  
 	editing: boolean;
 	constructor(  
-		private store: NgBarnService  
+		private store: StoreService  
 	) {  
 		store.select('users');  
 		store.set([  
