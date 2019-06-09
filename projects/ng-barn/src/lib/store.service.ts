@@ -37,7 +37,7 @@ export class StoreService {
   }
 
   set(data: object, key?: string) {
-    const frozenList = JSON.parse(JSON.stringify(this.store[key || this.key]));
+    const frozenList = this.store[key || this.key];
 
     this.store[key || this.key] = data;
 
@@ -54,7 +54,7 @@ export class StoreService {
   }
 
   push(data: object, key?: string) {
-    const frozenList = JSON.parse(JSON.stringify(this.store[key || this.key]));
+    const frozenList = this.store[key || this.key];
 
     this.store[key || this.key].push(data);
 
@@ -79,7 +79,7 @@ export class StoreService {
   }
 
   update(index: number, data: object, key?: string) {
-    const frozenList = JSON.parse(JSON.stringify(this.store[key || this.key]));
+    const frozenList = this.store[key || this.key];
 
     this.store[key || this.key][index] = {
       ...this.store[key || this.key][index],
@@ -106,7 +106,7 @@ export class StoreService {
   }
 
   delete(index: number, key?: string) {
-    const frozenList = JSON.parse(JSON.stringify(this.store[key || this.key]));
+    const frozenList = this.store[key || this.key];
 
     this.store[key || this.key].splice(index, 1);
 
